@@ -164,50 +164,68 @@ export default function requirements() {
 
 	return (
 		<>
-			<h1>It is working !</h1>
+  {/* Step 1 */}
+  {currentStep === 1 && (
+    <Step1EventBasics
+      formData={formData}
+      setFormData={setFormData}
+      errors={errors}
+    />
+  )}
 
-			{currentStep === 1 && (
-				<Step1EventBasics formData={formData} setFormData={setFormData} errors={errors} />
-			)}
+  {/* Step 2 */}
+  {currentStep === 2 && (
+    <Step2
+      formData={formData}
+      setFormData={setFormData}
+      errors={errors}
+    />
+  )}
 
-			{currentStep === 2 && (
-				<Step2 formData={formData} setFormData={setFormData} errors={errors}/>
-			)}
+  {/* Step 3 */}
+  {currentStep === 3 && (
+    <Step3
+      formData={formData}
+      setFormData={setFormData}
+    />
+  )}
 
-			{currentStep === 3 && <Step3 formData={formData} setFormData={setFormData}/>}
+  {/* Step 4 */}
+  {currentStep === 4 && (
+    <Step4
+      formData={formData}
+      handleSubmit={handleSubmit}
+    />
+  )}
 
-            {currentStep ===4 && (
-                <Step4 formData={formData} handleSubmit={handleSubmit} />
-            )}
+  {/* Navigation Buttons */}
+  <div className="w-full max-w-2xl mx-auto flex justify-center gap-4 mt-6 mb-8">
 
-            {currentStep < 4 && (
-                <button onClick={() => {
-					if(validateCurrentStep()){
-						setCurrentStep(currentStep + 1)
-					}
-				}}>
+    {currentStep > 1 && (
+      <button
+        onClick={() => {
+          setCurrentStep(currentStep - 1);
+        }}
+        className="rounded-md border border-gray-400 px-5 py-2 text-gray-700 hover:bg-gray-100"
+      >
+        Back
+      </button>
+    )}
 
-					Next
-				</button>
-            )}
+    {currentStep < 4 && (
+      <button
+        onClick={() => {
+          if (validateCurrentStep()) {
+            setCurrentStep(currentStep + 1);
+          }
+        }}
+        className="rounded-md bg-black px-5 py-2 text-white hover:bg-gray-800"
+      >
+        Next
+      </button>
+    )}
 
-			{currentStep > 1 && (
-				<button
-					onClick={() => {
-							setCurrentStep(currentStep - 1); 
-					}}
-				>
-					Back
-				</button>
-			)}
-
-			{/* <button
-				onClick={() => {
-					console.log(formData);
-				}}
-			>
-				Print FormData
-			</button> */}
-		</>
+  </div>
+</>
 	);
 }

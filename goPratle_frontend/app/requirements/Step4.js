@@ -1,4 +1,4 @@
-export default function Step4({ formData, handleSubmit }) {
+export default function Step4({ formData, handleSubmit, submitStatus }) {
     return (
         <>
             <div className="w-full max-w-2xl mx-auto space-y-6">
@@ -200,14 +200,28 @@ export default function Step4({ formData, handleSubmit }) {
 
 
                 {/* Submit */}
-                <div className="flex justify-center pt-4">
-                    <button
-                        onClick={handleSubmit}
-                        className="rounded-md bg-black px-6 py-2 text-white hover:bg-gray-800"
-                    >
-                        Submit Requirement
-                    </button>
-                </div>
+                <button
+    onClick={handleSubmit}
+    disabled={submitStatus === "success"}
+    className={`w-full rounded-md px-6 py-2 text-white ${
+        submitStatus === "success"
+            ? "cursor-not-allowed bg-gray-400"
+            : "bg-black hover:bg-gray-800"
+    }`}
+>
+    Submit
+</button>
+
+                {submitStatus === "success" && (
+    <div className="mt-4 rounded-md border border-green-200 bg-green-50 px-4 py-3 text-center text-sm font-medium text-green-700">
+        Requirement submitted successfully!
+    </div>
+)}
+                {submitStatus === "error" && (
+    <div className="mt-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-700">
+        Failed to submit requirement. Please try again.
+    </div>
+)}
 
             </div>
         </>

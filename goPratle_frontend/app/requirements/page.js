@@ -41,8 +41,12 @@ export default function requirements() {
 
 	const [errors,setErrors]= useState({})
 
+	const [submitStatus, setSubmitStatus] = useState("");
+
     async function handleSubmit() {
     try {
+        setSubmitStatus("");
+
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/submit`, {
             method: "POST",
             headers: {
@@ -53,14 +57,20 @@ export default function requirements() {
 
         const result = await response.json();
 
-		console.log("FULL BACKEND ERROR:", result.error);
-
+        console.log("FULL BACKEND ERROR:", result.error);
         console.log(result);
+
+        if (response.ok) {
+            setSubmitStatus("success");
+        } else {
+            setSubmitStatus("error");
+        }
 
     } catch (error) {
         console.error("Error submitting requirement:", error);
+        setSubmitStatus("error");
     }
-	}
+}
 
 	function validateCurrentStep() {
     const newError = {};
@@ -195,6 +205,7 @@ export default function requirements() {
     <Step4
       formData={formData}
       handleSubmit={handleSubmit}
+	  submitStatus={submitStatus}
     />
   )}
 

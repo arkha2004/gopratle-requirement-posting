@@ -1,229 +1,188 @@
 export default function Step4({ formData, handleSubmit, submitStatus }) {
-    return (
-        <>
-            <div className="w-full max-w-2xl mx-auto space-y-6">
+	return (
+		<>
+			<div className="w-full max-w-2xl mx-auto space-y-6">
+				<h2 className="text-2xl font-semibold text-gray-800">
+					Review Your Response
+				</h2>
 
-                <h2 className="text-2xl font-semibold text-gray-800">
-                    Review Your Response
-                </h2>
+				{/* Basic Event Details */}
+				<div className="space-y-4">
+					<h3 className="text-lg font-medium text-gray-700">Event Details</h3>
 
-                {/* Basic Event Details */}
-                <div className="space-y-4">
-                    <h3 className="text-lg font-medium text-gray-700">
-                        Event Details
-                    </h3>
+					<div className="space-y-2">
+						<p>
+							<span className="font-medium">Event Name:</span>{" "}
+							{formData.eventName}
+						</p>
 
-                    <div className="space-y-2">
-                        <p>
-                            <span className="font-medium">Event Name:</span>{" "}
-                            {formData.eventName}
-                        </p>
+						<p>
+							<span className="font-medium">Event Type:</span>{" "}
+							{formData.eventType}
+						</p>
 
-                        <p>
-                            <span className="font-medium">Event Type:</span>{" "}
-                            {formData.eventType}
-                        </p>
+						<p>
+							<span className="font-medium">Start Date:</span>{" "}
+							{formData.startDate}
+						</p>
 
-                        <p>
-                            <span className="font-medium">Start Date:</span>{" "}
-                            {formData.startDate}
-                        </p>
+						<p>
+							<span className="font-medium">End Date:</span> {formData.endDate}
+						</p>
 
-                        <p>
-                            <span className="font-medium">End Date:</span>{" "}
-                            {formData.endDate}
-                        </p>
+						<p>
+							<span className="font-medium">Location:</span> {formData.location}
+						</p>
 
-                        <p>
-                            <span className="font-medium">Location:</span>{" "}
-                            {formData.location}
-                        </p>
+						{/* Optional */}
+						{formData.venue && (
+							<p>
+								<span className="font-medium">Venue:</span> {formData.venue}
+							</p>
+						)}
 
-                        {/* Optional */}
-                        {formData.venue && (
-                            <p>
-                                <span className="font-medium">Venue:</span>{" "}
-                                {formData.venue}
-                            </p>
-                        )}
+						<p>
+							<span className="font-medium">Category:</span> {formData.category}
+						</p>
+					</div>
+				</div>
 
-                        <p>
-                            <span className="font-medium">Category:</span>{" "}
-                            {formData.category}
-                        </p>
-                    </div>
-                </div>
+				{/* Event Planner */}
+				{formData.category === "Event Planner" && (
+					<div className="space-y-4">
+						<h3 className="text-lg font-medium text-gray-700">
+							Event Planning Details
+						</h3>
 
+						<p>
+							<span className="font-medium">Expected Guest Count:</span>{" "}
+							{formData.guestCount}
+						</p>
 
-                {/* Event Planner */}
-                {formData.category === "Event Planner" && (
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-medium text-gray-700">
-                            Event Planning Details
-                        </h3>
+						<p>
+							<span className="font-medium">Budget:</span> {formData.budget}
+						</p>
 
-                        <p>
-                            <span className="font-medium">
-                                Expected Guest Count:
-                            </span>{" "}
-                            {formData.guestCount}
-                        </p>
+						{/* Optional */}
+						{formData.planningRequirements && (
+							<p>
+								<span className="font-medium">Planning Requirements:</span>{" "}
+								{formData.planningRequirements}
+							</p>
+						)}
 
-                        <p>
-                            <span className="font-medium">Budget:</span>{" "}
-                            {formData.budget}
-                        </p>
+						{/* Optional */}
+						{formData.additionalNotes && (
+							<p>
+								<span className="font-medium">Additional Notes:</span>{" "}
+								{formData.additionalNotes}
+							</p>
+						)}
+					</div>
+				)}
 
-                        {/* Optional */}
-                        {formData.planningRequirements && (
-                            <p>
-                                <span className="font-medium">
-                                    Planning Requirements:
-                                </span>{" "}
-                                {formData.planningRequirements}
-                            </p>
-                        )}
+				{/* Performer */}
+				{formData.category === "Performer" && (
+					<div className="space-y-4">
+						<h3 className="text-lg font-medium text-gray-700">
+							Performance Details
+						</h3>
 
-                        {/* Optional */}
-                        {formData.additionalNotes && (
-                            <p>
-                                <span className="font-medium">
-                                    Additional Notes:
-                                </span>{" "}
-                                {formData.additionalNotes}
-                            </p>
-                        )}
-                    </div>
-                )}
+						<p>
+							<span className="font-medium">Performance Type:</span>{" "}
+							{formData.performanceType}
+						</p>
 
+						<p>
+							<span className="font-medium">Number of Performers:</span>{" "}
+							{formData.performerCount}
+						</p>
 
-                {/* Performer */}
-                {formData.category === "Performer" && (
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-medium text-gray-700">
-                            Performance Details
-                        </h3>
+						<p>
+							<span className="font-medium">Performance Duration:</span>{" "}
+							{formData.performanceDuration}
+						</p>
 
-                        <p>
-                            <span className="font-medium">
-                                Performance Type:
-                            </span>{" "}
-                            {formData.performanceType}
-                        </p>
+						{/* Optional */}
+						{formData.technicalRequirements && (
+							<p>
+								<span className="font-medium">Technical Requirements:</span>{" "}
+								{formData.technicalRequirements}
+							</p>
+						)}
 
-                        <p>
-                            <span className="font-medium">
-                                Number of Performers:
-                            </span>{" "}
-                            {formData.performerCount}
-                        </p>
+						{/* Optional */}
+						{formData.additionalNotes && (
+							<p>
+								<span className="font-medium">Additional Notes:</span>{" "}
+								{formData.additionalNotes}
+							</p>
+						)}
+					</div>
+				)}
 
-                        <p>
-                            <span className="font-medium">
-                                Performance Duration:
-                            </span>{" "}
-                            {formData.performanceDuration}
-                        </p>
+				{/* Crew */}
+				{formData.category === "Crew" && (
+					<div className="space-y-4">
+						<h3 className="text-lg font-medium text-gray-700">Crew Details</h3>
 
-                        {/* Optional */}
-                        {formData.technicalRequirements && (
-                            <p>
-                                <span className="font-medium">
-                                    Technical Requirements:
-                                </span>{" "}
-                                {formData.technicalRequirements}
-                            </p>
-                        )}
+						<p>
+							<span className="font-medium">Crew Role:</span>{" "}
+							{formData.crewRole}
+						</p>
 
-                        {/* Optional */}
-                        {formData.additionalNotes && (
-                            <p>
-                                <span className="font-medium">
-                                    Additional Notes:
-                                </span>{" "}
-                                {formData.additionalNotes}
-                            </p>
-                        )}
-                    </div>
-                )}
+						<p>
+							<span className="font-medium">Number of Crew Members:</span>{" "}
+							{formData.crewCount}
+						</p>
 
+						<p>
+							<span className="font-medium">Experience Required:</span>{" "}
+							{formData.experienceRequired}
+						</p>
 
-                {/* Crew */}
-                {formData.category === "Crew" && (
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-medium text-gray-700">
-                            Crew Details
-                        </h3>
+						{/* Optional */}
+						{formData.shiftRequirements && (
+							<p>
+								<span className="font-medium">Shift Requirements:</span>{" "}
+								{formData.shiftRequirements}
+							</p>
+						)}
 
-                        <p>
-                            <span className="font-medium">
-                                Crew Role:
-                            </span>{" "}
-                            {formData.crewRole}
-                        </p>
+						{/* Optional */}
+						{formData.additionalNotes && (
+							<p>
+								<span className="font-medium">Additional Notes:</span>{" "}
+								{formData.additionalNotes}
+							</p>
+						)}
+					</div>
+				)}
 
-                        <p>
-                            <span className="font-medium">
-                                Number of Crew Members:
-                            </span>{" "}
-                            {formData.crewCount}
-                        </p>
+				{/* Submit */}
+				<button
+					onClick={handleSubmit}
+					disabled={submitStatus === "success"}
+					className={`w-full rounded-md px-6 py-2 text-white ${
+						submitStatus === "success"
+							? "cursor-not-allowed bg-gray-400"
+							: "bg-black hover:bg-gray-800"
+					}`}
+				>
+					Submit
+				</button>
 
-                        <p>
-                            <span className="font-medium">
-                                Experience Required:
-                            </span>{" "}
-                            {formData.experienceRequired}
-                        </p>
-
-                        {/* Optional */}
-                        {formData.shiftRequirements && (
-                            <p>
-                                <span className="font-medium">
-                                    Shift Requirements:
-                                </span>{" "}
-                                {formData.shiftRequirements}
-                            </p>
-                        )}
-
-                        {/* Optional */}
-                        {formData.additionalNotes && (
-                            <p>
-                                <span className="font-medium">
-                                    Additional Notes:
-                                </span>{" "}
-                                {formData.additionalNotes}
-                            </p>
-                        )}
-                    </div>
-                )}
-
-
-                {/* Submit */}
-                <button
-    onClick={handleSubmit}
-    disabled={submitStatus === "success"}
-    className={`w-full rounded-md px-6 py-2 text-white ${
-        submitStatus === "success"
-            ? "cursor-not-allowed bg-gray-400"
-            : "bg-black hover:bg-gray-800"
-    }`}
->
-    Submit
-</button>
-
-                {submitStatus === "success" && (
-    <div className="mt-4 rounded-md border border-green-200 bg-green-50 px-4 py-3 text-center text-sm font-medium text-green-700">
-        Requirement submitted successfully!
-    </div>
-)}
-                {submitStatus === "error" && (
-    <div className="mt-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-700">
-        Failed to submit requirement. Please try again.
-    </div>
-)}
-
-            </div>
-        </>
-    )
+				{submitStatus === "success" && (
+					<div className="mt-4 rounded-md border border-green-200 bg-green-50 px-4 py-3 text-center text-sm font-medium text-green-700">
+						Requirement submitted successfully!
+					</div>
+				)}
+				{submitStatus === "error" && (
+					<div className="mt-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-700">
+						Failed to submit requirement. Please try again.
+					</div>
+				)}
+			</div>
+		</>
+	);
 }

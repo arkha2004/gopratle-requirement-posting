@@ -43,7 +43,7 @@ export default function requirements() {
 
     async function handleSubmit() {
     try {
-        const response = await fetch("http://localhost:5000/submit", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/submit`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
